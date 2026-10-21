@@ -7,7 +7,6 @@ const ExpenseList = ({ expenses, onDelete, onTogglePaid }) => {
   const [category, setCategory] = useState('');
   const [width, setWidth] = useState(window.innerWidth);
 
-  // 2.5 Responsive: lắng nghe resize
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -20,7 +19,6 @@ const ExpenseList = ({ expenses, onDelete, onTogglePaid }) => {
 
   const isMobile = width < 768;
 
-  // Hàm xử lý khi gõ vào ô tìm kiếm (tên bắt buộc theo đề)
   const handleQueryShift = (e) => {
     setQuery(e.target.value);
   };
@@ -29,7 +27,6 @@ const ExpenseList = ({ expenses, onDelete, onTogglePaid }) => {
     setCategory(e.target.value);
   };
 
-  // Lọc dữ liệu
   const filtered = expenses.filter((e) => {
     const matchQuery = e.title.toLowerCase().includes(query.toLowerCase());
     const matchCategory = category === '' || e.category === category;

@@ -13,13 +13,11 @@ const AddExpense = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Mục 4: kiểm tra ô trống
     if (!title.trim() || !amount || !date) {
       setErrorMsg('Vui lòng nhập đầy đủ thông tin');
       return;
     }
 
-    // Mục 8 (nâng cao): kiểm tra số tiền
     const amountNum = Number(amount);
     if (!Number.isInteger(amountNum) || amountNum < 1000 || amountNum > 100000000) {
       setErrorMsg('Số tiền phải từ 1.000 đến 100.000.000');
@@ -33,7 +31,6 @@ const AddExpense = ({ onAdd }) => {
       date,
     });
 
-    // Chuyển về danh sách, replace để Back không quay lại form
     navigate('/expenses', { replace: true });
   };
 

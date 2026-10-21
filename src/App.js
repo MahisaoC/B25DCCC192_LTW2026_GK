@@ -16,9 +16,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 2.4 Gọi API + đọc localStorage (nâng cao)
   useEffect(() => {
-    // Nâng cao: đọc dữ liệu đã lưu từ localStorage
     const saved = localStorage.getItem('gk_expenses');
     if (saved) {
       setExpenses(JSON.parse(saved));
@@ -26,7 +24,6 @@ const App = () => {
       return;
     }
 
-    // Cơ bản: gọi API
     const controller = new AbortController();
     axios
       .get('/data/expenses.json', { signal: controller.signal })
@@ -35,26 +32,22 @@ const App = () => {
         setLoading(false);
       })
       .catch((err) => {
-        // Nâng cao: hủy request – bỏ qua nếu bị cancel
         if (axios.isCancel(err)) return;
         setError('Không tải được dữ liệu');
         setLoading(false);
       });
 
-    // Nâng cao: cleanup – hủy request khi unmount
     return () => {
       controller.abort();
     };
   }, []);
 
-  // Nâng cao: lưu dữ liệu vào localStorage khi thay đổi
   useEffect(() => {
     if (!loading) {
       localStorage.setItem('gk_expenses', JSON.stringify(expenses));
     }
   }, [expenses, loading]);
 
-  // Hàm thêm khoản chi
   const addExpense = (expense) => {
     const maxId = expenses.length > 0
       ? Math.max(...expenses.map((e) => e.id))
@@ -63,12 +56,10 @@ const App = () => {
     setExpenses([...expenses, newExpense]);
   };
 
-  // Hàm xóa khoản chi
   const deleteExpense = (id) => {
     setExpenses(expenses.filter((e) => e.id !== id));
   };
 
-  // Hàm cập nhật trạng thái thanh toán
   const togglePaid = (id) => {
     setExpenses(
       expenses.map((e) =>
@@ -77,7 +68,6 @@ const App = () => {
     );
   };
 
-  // Render loading / error
   if (loading) {
     return (
       <Layout>
