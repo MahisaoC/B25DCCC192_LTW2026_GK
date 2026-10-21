@@ -111,11 +111,22 @@ tbody td button {
   transition: all 0.15s ease;
 }
 
+tbody td:last-child {
+  white-space: nowrap;
+}
+
+tbody td button:first-child {
+  width: 142px;
+  text-align: center;
+}
+
 tbody td button:hover {
   background-color: #f1f3f4;
 }
 
 tbody td button:last-child {
+  width: 48px;
+  text-align: center;
   color: #d93025;
   border-color: #fad2cf;
 }
