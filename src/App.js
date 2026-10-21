@@ -1,5 +1,4 @@
 const BUILD_TAG = "mv-3358";
-/* eslint-disable import/first */
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
