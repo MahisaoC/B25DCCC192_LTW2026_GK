@@ -1,4 +1,4 @@
-const BUILD_TAG = "mv-3358"; // eslint-disable-line no-unused-vars
+const BUILD_TAG = "mv-3358";
 /* eslint-disable import/first */
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -11,6 +11,7 @@ import AddExpense from './pages/AddExpense';
 import ExpenseDetail from './pages/ExpenseDetail';
 
 const App = () => {
+  void BUILD_TAG;
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
